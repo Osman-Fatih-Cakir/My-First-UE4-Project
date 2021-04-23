@@ -39,4 +39,7 @@ private:
 
 	float MoveSpeed = 500.f;
 	float RotateSpeed = 50.f;
+
+	UPROPERTY(EditAnywhere)
+	float RotateAmount = 0.f;
 };

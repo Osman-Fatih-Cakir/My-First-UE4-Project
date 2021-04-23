@@ -1,11 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
 #include "Waypoint.h"
 #include "EnemyAIController.h"
 #include "EnemyAI.h"
 
 #include "Math/UnrealMathUtility.h"
 #include "Kismet/GameplayStatics.h"
+
 
 // Sets default values
 AEnemyAI::AEnemyAI()
@@ -20,8 +22,10 @@ void AEnemyAI::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// AI get waypoints to walk
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AWaypoint::StaticClass(), Waypoints);
 	MoveToWaypoints();
+
 }
 
 // Called every frame
@@ -29,13 +33,14 @@ void AEnemyAI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (SeePlayer)
+		UE_LOG(LogTemp, Warning, TEXT("SEE"));
 }
 
 // Called to bind functionality to input
 void AEnemyAI::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 
@@ -68,3 +73,8 @@ void AEnemyAI::MoveToWaypoints()
 	}
 }
 
+
+void AEnemyAI::ChangeSeePlayerState()
+{
+	SeePlayer = !SeePlayer;
+}

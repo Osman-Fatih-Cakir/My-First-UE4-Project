@@ -3,6 +3,8 @@
 
 #include "MyPawn.h"
 
+#include "GameFramework/Pawn.h"
+
 // Sets default values
 AMyPawn::AMyPawn()
 {
@@ -24,6 +26,7 @@ void AMyPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	Rotate();
+	MoveDirection = GetActorRotation().RotateVector(MoveDirection);
 	Move();
 }
 
@@ -33,7 +36,7 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	if (!PlayerInputComponent)
-		UE_LOG(LogTemp, Warning, TEXT("Input Controller is null. "), *GetOwner()->GetName());
+		UE_LOG(LogTemp, Warning, TEXT("Input Controller is null. "));
 
 	// Move input
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyPawn::CalculateMoveForward);
@@ -53,17 +56,15 @@ void AMyPawn::CalculateMoveRight(float value)
 
 void AMyPawn::CalculateRotate(float value)
 {
-	float RotateAmount = value * RotateSpeed * GetWorld()->DeltaTimeSeconds;
-	FRotator Rotation = FRotator(0, RotateAmount, 0);
-	RotationDirection = FQuat(Rotation);
+	RotateAmount = value * RotateSpeed * GetWorld()->DeltaTimeSeconds;
 }
 
 void AMyPawn::Move()
 {
-	AddActorLocalOffset(MoveDirection, true);
+	AddMovementInput(FVector(MoveDirection.X, MoveDirection.Y, 0.f), MoveSpeed, false);
 }
 
 void AMyPawn::Rotate()
 {
-	AddActorLocalRotation(RotationDirection, true);
+	AddControllerYawInput(RotateAmount);
 }

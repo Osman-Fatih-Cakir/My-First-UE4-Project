@@ -2,9 +2,12 @@
 
 #pragma once
 
+#include "Perception/AIPerceptionTypes.h"
+
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "EnemyAI.generated.h"
+
 
 UCLASS()
 class FIRSTUE4PROJECT_API AEnemyAI : public ACharacter
@@ -28,11 +31,19 @@ public:
 
 	void MoveToWaypoints();
 
+	UFUNCTION(BlueprintCallable)
+	void ChangeSeePlayerState();
+
 private:
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	int CurrentWaypoint;
 	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	int MaxWaypoint = 61;
 
+	AActor* Player;
 	TArray<AActor*> Waypoints;
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool SeePlayer = false;
 };
