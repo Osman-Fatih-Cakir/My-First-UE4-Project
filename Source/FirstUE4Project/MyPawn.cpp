@@ -32,7 +32,8 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	UE_LOG(LogTemp, Warning, TEXT("Input Controller is null. "), *GetOwner()->GetName());
+	if (!PlayerInputComponent)
+		UE_LOG(LogTemp, Warning, TEXT("Input Controller is null. "), *GetOwner()->GetName());
 
 	// Move input
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyPawn::CalculateMoveForward);
