@@ -26,6 +26,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int score = 0;
+
 private:
 	FVector MoveDirection;
 	FQuat RotationDirection;
@@ -42,4 +45,5 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float RotateAmount = 0.f;
+
 };
