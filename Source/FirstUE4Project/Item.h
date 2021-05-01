@@ -19,7 +19,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -27,10 +28,10 @@ public:
 	void setItemID(int id);
 	FString getItemName();
 	void setItemName(FString name);
-	float AItem::getSpawnProb();
-	void AItem::setSpawnProb(float prob);
+	float getSpawnProb();
+	void setSpawnProb(float prob);
 
-private:
+protected:
 
 	int ItemID = -1;
 	FString ItemName = "UNASSIGNED";
