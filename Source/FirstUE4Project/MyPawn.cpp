@@ -11,6 +11,7 @@ AMyPawn::AMyPawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// TODO add root component
 }
 
 // Called when the game starts or when spawned
@@ -67,4 +68,25 @@ void AMyPawn::Move()
 void AMyPawn::Rotate()
 {
 	AddControllerYawInput(RotateAmount);
+}
+
+// Increases score
+void AMyPawn::AddScore(int value)
+{
+	score += value;
+	UE_LOG(LogTemp, Warning, TEXT("SCORE: %d"), score);
+}
+
+// Decrease score
+void AMyPawn::DeleteScore(int value)
+{
+	score -= value;
+	UE_LOG(LogTemp, Warning, TEXT("SCORE: %d"), score);
+}
+
+// Resets score
+void AMyPawn::ResetScore()
+{
+	score = 0;
+	UE_LOG(LogTemp, Warning, TEXT("SCORE: %d"), score);
 }

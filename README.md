@@ -1,3 +1,1 @@
-# FirstUE4Project
-
-My first Unreal Engine 4 project.
+# A Small Test Project For Learning UE4

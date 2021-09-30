@@ -36,6 +36,7 @@ protected:
 	int ItemID = -1;
 	FString ItemName = "UNASSIGNED";
 
+	int scoreValue = 1;
 	int ItemType = -1;
 	float spawnProb = 0.f;
 };

@@ -15,24 +15,29 @@ public:
 	// Sets default values for this pawn's properties
 	AMyPawn();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int score = 0;
+	// Increases score
+	UFUNCTION(BlueprintCallable, Category = "Score Functions")
+	void AddScore(int value);
+
+	// Decrease score
+	UFUNCTION(BlueprintCallable, Category = "Score Functions")
+	void DeleteScore(int value);
+
+	// Resets score
+	UFUNCTION(BlueprintCallable, Category = "Score Functions")
+	void ResetScore();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 private:
-	FVector MoveDirection;
-	FQuat RotationDirection;
-
 	void CalculateMoveForward(float value);
 	void CalculateMoveRight(float value);
 	void CalculateRotate(float value);
@@ -40,10 +45,17 @@ private:
 	void Move();
 	void Rotate();
 
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int score = 0;
+
+private:
+	FVector MoveDirection;
+	FQuat RotationDirection;
+
 	float MoveSpeed = 500.f;
 	float RotateSpeed = 50.f;
 
 	UPROPERTY(EditAnywhere)
 	float RotateAmount = 0.f;
-
 };

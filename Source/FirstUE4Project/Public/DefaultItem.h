@@ -33,6 +33,6 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Trigger Box")
 	class UBoxComponent* TriggerBox;
 
-	FRotator rotation = FRotator(0.f, 0.f, 1.f);
+	FRotator rotation = FRotator(0.f, 1.f, 0.f);
 	FQuat QuatRot;
 };

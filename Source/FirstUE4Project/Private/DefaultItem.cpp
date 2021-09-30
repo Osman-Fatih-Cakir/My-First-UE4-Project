@@ -4,6 +4,7 @@
 #include "DefaultItem.h"
 #include "Engine/EngineTypes.h"
 #include "Kismet/GameplayStatics.h"
+#include "UObject/Object.h"
 //#include "Components/PrimitiveComponent.h"
 
 // Constructor
@@ -15,9 +16,11 @@ ADefaultItem::ADefaultItem()
 	this->ItemName = "Default";
 	this->spawnProb = 1.f;
 
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("ROOT"));
+
 	// TriggerBox
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Trigger Box"));
-	TriggerBox->InitBoxExtent(FVector(10, 10, 10));
+	TriggerBox->InitBoxExtent(FVector(1, 1, 1));
 	TriggerBox->SetCollisionProfileName(TEXT("Trigger"));
 	TriggerBox->SetupAttachment(RootComponent);
 
